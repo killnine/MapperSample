@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Model.Domain.MachineData;
 using Model.Domain.MachineData.Press;
@@ -23,11 +24,18 @@ namespace Model.Mappers.MachineData.HP
                 return;
             }
 
-            data.PaperConsumption = new PaperData();
-            var mappingResult = _paperMapper.Map(data.PaperConsumption, SourceItem);
-            if(_paperMapper.ShouldBeNull(data.PaperConsumption))
+            try
             {
-                data.PaperConsumption = null;
+                data.PaperConsumption = new PaperData();
+                var mappingResult = _paperMapper.Map(data.PaperConsumption, SourceItem);
+                if (_paperMapper.ShouldBeNull(data.PaperConsumption))
+                {
+                    data.PaperConsumption = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                AddError("Unable to map PaperConsumption data: " + ex.Message);
             }
         }
 

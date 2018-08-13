@@ -14,12 +14,6 @@
     <PackageReference Include="Moq" Version="4.9.0" />
     <PackageReference Include="AutoFixture" Version="4.5.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-    <Folder Include="Mappers\MachineData\" />
-    <Folder Include="Mappers\MachineData\HP\" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>

@@ -17,10 +17,9 @@ namespace Model.Mappers.MachineData.HP
         {
             var properties = new List<string>
             {
-                nameof(data.LinearFeet),
-                nameof(data.PaperPartNumber),
-                nameof(data.PaperType),
-                nameof(data.PaperWidth)
+                //NOTE: To exclude certain properties from affecting 
+                //      whether an object is null or not, add them here
+                //nameof(data.LinearFeet),
             };
 
             if(ignoreProperties != null)
