@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Model.Domain.MachineData.Press;
+﻿using Model.Domain.MachineData.Press;
 
 namespace Model.Mappers.MachineData
 {
     public abstract class MachinePaperMapper<T,TV> : MapperBase<T, TV> where T : PaperData
     {
-        internal abstract void PaperWidth(T destination);
-        internal abstract void LinearFeet(T destination);
-        internal abstract void PaperPartNumber(T destination);
-        internal abstract void PaperType(T destination);
+        protected abstract void PaperWidth(T destination);
+        protected abstract void LinearFeet(T destination);
+        protected abstract void PaperPartNumber(T destination);
+        protected abstract void PaperType(T destination);
 
-        public override MappingResult Sync(T destination, TV source)
+        public override MapResult Map(T destination, TV source)
         {
             SetSourceItem(source);
 
@@ -20,7 +18,7 @@ namespace Model.Mappers.MachineData
             LinearFeet(destination);
             PaperWidth(destination);
 
-            return base.Sync(destination, source);
+            return base.Map(destination, source);
         }
     }
 }

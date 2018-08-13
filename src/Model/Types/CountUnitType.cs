@@ -1,5 +1,4 @@
-﻿using System;
-namespace Model.Types
+﻿namespace Model.Types
 {
     public enum CountUnitType
     {

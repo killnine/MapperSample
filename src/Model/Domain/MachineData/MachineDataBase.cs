@@ -1,6 +1,6 @@
 ﻿using Model.Types;
 
-namespace Model
+namespace Model.Domain.MachineData
 {
     public class MachineDataBase
     {

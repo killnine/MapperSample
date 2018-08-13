@@ -1,16 +1,14 @@
-﻿using System;
-using Model.External.HP;
-using Model.Mappers.HP;
-using Model.Press;
+﻿using Model.External.HP;
 using Xunit;
 using AutoFixture;
+using Model.Domain.MachineData.Press;
 using Model.Mappers.MachineData.HP;
 
 namespace Model.Test.Mappers.MachineData.HP
 {
     public class HpMachineDataMapperTests
     {
-        private Fixture _fixture;
+        private readonly Fixture _fixture;
 
         public HpMachineDataMapperTests() 
         {
@@ -21,7 +19,7 @@ namespace Model.Test.Mappers.MachineData.HP
         public void Mapper_ShouldSucceed_WithNoErrors()
         {
             //Arrange
-            HpMachineDataMapper sut = new HpMachineDataMapper(new HpMachinePaperMapper());
+            IHpMachineDataMapper sut = new HpMachineDataMapper(new HpMachinePaperMapper());
 
             PressMachineData destination = new PressMachineData();
             messageSubmissionStatistics statistic = _fixture.Build<messageSubmissionStatistics>()
@@ -36,7 +34,7 @@ namespace Model.Test.Mappers.MachineData.HP
                                              .Create();
 
             //Act
-            var result = sut.Sync(destination, source);
+            var result = sut.Map(destination, source);
 
             //Assert
             Assert.True(result.Success);

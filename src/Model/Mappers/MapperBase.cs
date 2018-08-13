@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using Model.Utilities;
 
-namespace Model
+namespace Model.Mappers
 {
     public abstract class MapperBase<T,TV>
     {
-        protected TV SourceItem { get; set; }
+        protected TV SourceItem { get; private set; }
 
         readonly IList<string> _warnings = new List<string>();
         readonly IList<string> _errors = new List<string>();
@@ -23,16 +23,16 @@ namespace Model
             _errors.Add(message);
         }
 
-        public virtual void SetSourceItem(TV sourceItem)
+        protected virtual void SetSourceItem(TV sourceItem)
         {
             SourceItem = sourceItem;    
         }
 
-        public virtual MappingResult Sync(T destination, TV source)
+        public virtual MapResult Map(T destination, TV source)
         {
             SetSourceItem(source);
 
-            var result = new MappingResult()
+            var result = new MapResult()
             {
                 Warnings = _warnings,
                 Errors = _errors,
@@ -74,7 +74,7 @@ namespace Model
             return noPropertiesSet;
         }
 
-        protected static object GetDefault(Type type)
+        private static object GetDefault(Type type)
         {
             if (type != null && type.IsValueType)
             {

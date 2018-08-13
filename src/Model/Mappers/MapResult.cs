@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Model
+namespace Model.Mappers
 {
-    public class MappingResult
+    public class MapResult
     {
         public bool Success { get; set; }
         public IList<string> Errors { get; set; } = new List<string>();

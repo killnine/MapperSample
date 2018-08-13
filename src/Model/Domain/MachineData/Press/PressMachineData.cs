@@ -1,6 +1,4 @@
-﻿using Model.Domain.MachineData.Press;
-
-namespace Model.Press
+﻿namespace Model.Domain.MachineData.Press
 {
     public class PressMachineData : MachineDataBase
     {

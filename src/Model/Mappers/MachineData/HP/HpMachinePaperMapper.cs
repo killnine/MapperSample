@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Model.Domain.MachineData.Press;
 using Model.External.HP;
@@ -8,7 +7,7 @@ namespace Model.Mappers.MachineData.HP
 {
     public interface IHpMachinePaperMapper 
     {
-        MappingResult Sync(PaperData destination, HpSpecification source);
+        MapResult Map(PaperData destination, HpSpecification source);
         bool ShouldBeNull(PaperData data, List<string> ignoreProperties = null);
     }
 
@@ -32,22 +31,22 @@ namespace Model.Mappers.MachineData.HP
             return base.ShouldBeNull(data, properties);
         }
 
-        internal override void LinearFeet(PaperData destination)
+        protected override void LinearFeet(PaperData destination)
         {
             destination.LinearFeet = 100.0M;
         }
 
-        internal override void PaperPartNumber(PaperData destination)
+        protected override void PaperPartNumber(PaperData destination)
         {
             destination.PaperPartNumber = "SamplePaper";
         }
 
-        internal override void PaperType(PaperData destination)
+        protected override void PaperType(PaperData destination)
         {
             destination.PaperType = Types.PaperType.Sheet;
         }
 
-        internal override void PaperWidth(PaperData destination)
+        protected override void PaperWidth(PaperData destination)
         {
             destination.PaperWidth = 36.0M;
         }

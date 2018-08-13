@@ -1,18 +1,22 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Model.Domain.MachineData;
 using Model.Domain.MachineData.Press;
 using Model.External.HP;
-using Model.Mappers.MachineData;
-using Model.Mappers.MachineData.HP;
-using Model.Press;
 
-namespace Model.Mappers.HP
+namespace Model.Mappers.MachineData.HP
 {
-    public class HpMachineDataMapper : PressMachineDataMapper<HpSpecification>
+    public interface IHpMachineDataMapper
+    {
+        MapResult Map(PressMachineData destination, HpSpecification source);
+        bool ShouldBeNull(PressMachineData obj, List<string> ignoreProperties = null);
+    }
+
+    public class HpMachineDataMapper : PressMachineDataMapper<HpSpecification>, IHpMachineDataMapper
     {
         private readonly IHpMachinePaperMapper _paperMapper;
 
-        internal override void PaperConsumption(PressMachineData data)
+        protected override void PaperConsumption(PressMachineData data)
         {
             if(!SourceItem.submission.Any())
             {
@@ -20,19 +24,19 @@ namespace Model.Mappers.HP
             }
 
             data.PaperConsumption = new PaperData();
-            var mappingResult = _paperMapper.Sync(data.PaperConsumption, SourceItem);
+            var mappingResult = _paperMapper.Map(data.PaperConsumption, SourceItem);
             if(_paperMapper.ShouldBeNull(data.PaperConsumption))
             {
                 data.PaperConsumption = null;
             }
         }
 
-        internal override void JobNumber(MachineDataBase data)
+        protected override void JobNumber(MachineDataBase data)
         {
             data.JobNumber = SourceItem.customerjobid;
         }
 
-        internal override void GrossCount(MachineDataBase data)
+        protected override void GrossCount(MachineDataBase data)
         {
             if (!SourceItem.submission.Any() || !SourceItem.submission[0].statistics.Any())
             {
@@ -42,7 +46,7 @@ namespace Model.Mappers.HP
             data.GrossCount = SourceItem.submission[0].statistics[0].copiesprintederror + SourceItem.submission[0].statistics[0].copiesprintedok;
         }
 
-        internal override void NetCount(MachineDataBase data)
+        protected override void NetCount(MachineDataBase data)
         {
             if (!SourceItem.submission.Any() || !SourceItem.submission[0].statistics.Any())
             {
@@ -52,7 +56,7 @@ namespace Model.Mappers.HP
             data.NetCount = SourceItem.submission[0].statistics[0].copiesprintedok;
         }
 
-        internal override void WasteCount(MachineDataBase data)
+        protected override void WasteCount(MachineDataBase data)
         {
             if (!SourceItem.submission.Any() || !SourceItem.submission[0].statistics.Any())
             {
@@ -62,14 +66,9 @@ namespace Model.Mappers.HP
             data.WasteCount = SourceItem.submission[0].statistics[0].copiesprintederror;
         }
 
-        internal override void Unit(MachineDataBase data)
+        protected override void Unit(MachineDataBase data)
         {
             data.Unit = Types.CountUnitType.Copies;
-        }
-
-        public override MappingResult Sync(PressMachineData destination, HpSpecification source)
-        {
-            return base.Sync(destination, source);
         }
 
         public HpMachineDataMapper(IHpMachinePaperMapper paperMapper)

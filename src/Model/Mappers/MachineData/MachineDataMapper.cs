@@ -1,14 +1,16 @@
-﻿namespace Model.Mappers.MachineData
+﻿using Model.Domain.MachineData;
+
+namespace Model.Mappers.MachineData
 {
     public abstract class MachineDataMapper<T,TV> : MapperBase<T, TV> where T : MachineDataBase
     {
-        internal abstract void JobNumber(MachineDataBase data);
-        internal abstract void GrossCount(MachineDataBase data);
-        internal abstract void NetCount(MachineDataBase data);
-        internal abstract void WasteCount(MachineDataBase data);
-        internal abstract void Unit(MachineDataBase data);
+        protected abstract void JobNumber(MachineDataBase data);
+        protected abstract void GrossCount(MachineDataBase data);
+        protected abstract void NetCount(MachineDataBase data);
+        protected abstract void WasteCount(MachineDataBase data);
+        protected abstract void Unit(MachineDataBase data);
 
-        public override MappingResult Sync(T destination, TV source)
+        public override MapResult Map(T destination, TV source)
         {
             SetSourceItem(source);
 
@@ -18,7 +20,7 @@
             WasteCount(destination);
             Unit(destination);
 
-            return base.Sync(destination, source);
+            return base.Map(destination, source);
         }
     }
 }
