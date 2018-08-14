@@ -1,4 +1,4 @@
-﻿namespace Model.Types
+﻿namespace Model.Domain.Types
 {
     public enum PaperType
     {

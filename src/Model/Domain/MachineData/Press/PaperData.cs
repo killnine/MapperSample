@@ -1,4 +1,4 @@
-﻿using Model.Types;
+﻿using Model.Domain.Types;
 
 namespace Model.Domain.MachineData.Press
 {

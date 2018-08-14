@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model.Mappers
+namespace Model.Domain.Mappers
 {
     public class MapResult
     {

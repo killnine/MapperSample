@@ -1,6 +1,6 @@
 ﻿using Model.Domain.MachineData.Press;
 
-namespace Model.Mappers.MachineData
+namespace Model.Domain.Mappers.MachineData
 {
     public abstract class MachinePaperMapper<T,TV> : MapperBase<T, TV> where T : PaperData
     {

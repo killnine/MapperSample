@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Model.Utilities;
 
-namespace Model.Mappers
+namespace Model.Domain.Mappers
 {
     public abstract class MapperBase<T,TV>
     {

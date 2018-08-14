@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Types\" />
+    <Folder Include="Domain\Types\" />
     <Folder Include="Domain\MachineData\" />
     <Folder Include="Domain\MachineData\Press\" />
     <Folder Include="Utilities\" />

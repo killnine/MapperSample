@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Model.DataTransfer.External.HP;
 using Model.Domain.MachineData;
 using Model.Domain.MachineData.Press;
-using Model.External.HP;
 
-namespace Model.Mappers.MachineData.HP
+namespace Model.Domain.Mappers.MachineData.HP
 {
     public interface IHpMachineDataMapper
     {

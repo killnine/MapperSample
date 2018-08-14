@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoFixture;
 using Model.Domain.MachineData.Press;
-using Model.Mappers.MachineData.HP;
+using Model.Domain.Mappers.MachineData.HP;
 using Xunit;
 
 namespace Model.Test.Mappers.MachineData.HP
@@ -43,6 +43,5 @@ namespace Model.Test.Mappers.MachineData.HP
             //Assert
             Assert.False(result);
         }
-
     }
 }

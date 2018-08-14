@@ -1,6 +1,6 @@
 ﻿using Model.Domain.MachineData;
 
-namespace Model.Mappers.MachineData
+namespace Model.Domain.Mappers.MachineData
 {
     public abstract class MachineDataMapper<T,TV> : MapperBase<T, TV> where T : MachineDataBase
     {

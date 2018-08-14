@@ -1,10 +1,10 @@
 ﻿using System;
-using Model.External.HP;
+using Model.DataTransfer.External.HP;
 using Xunit;
 using AutoFixture;
 using Model.Domain.MachineData.Press;
-using Model.Mappers.MachineData.HP;
-using Model.Types;
+using Model.Domain.Mappers.MachineData.HP;
+using Model.Domain.Types;
 using Moq;
 
 namespace Model.Test.Mappers.MachineData.HP
